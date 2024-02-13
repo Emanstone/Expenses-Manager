@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<body id="page-top">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Nuels Ex App </div> 
+        </a>
+    
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+    
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+    
+        <!-- Divider -->
+        {% comment %} <hr class="sidebar-divider"> {% endcomment %}
+    
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            {% comment %} Interface {% endcomment %}
+        </div>
+    
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Income</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a href="{% url 'income-list' %}">
+                        <h6 class="collapse-header bg-dark">Income List</h6>
+                    </a>
+                    {% comment %} <h6 class="collapse-header">Income Total</h6> {% endcomment %}
+                    {% for category in global_list %}
+                    {% comment %} <a class="collapse-item" href="salary.html">{{category.name}}</a> {% endcomment %}
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+    
+        <!-- Nav Item - Utilities Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                aria-expanded="true" aria-controls="collapseUtilities">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>Expenses</span>
+            </a>
+            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-0 collapse-inner rounded">
+                    <a href="{% url 'expenses-list' %}">
+                        <h6 class="collapse-header bg-dark">Expense List</h6>
+                    </a>
+                    {% comment %} <h6 class="collapse-header">Expenses Categories:</h6> {% endcomment %}
+                    {% for cate in globa_list %}
+                    {% comment %} <a class="collapse-item" href="salary.html">{{cate.name}}</a> {% endcomment %}
+                    {% endfor %}
+                </div>
+            </div>
+        </li>
+    
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+    
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            {% comment %} Addons {% endcomment %}
+        </div>
+    
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-0 collapse-inner rounded">
+                    {% comment %} <h6 class="collapse-header">Login Screens:</h6> {% endcomment %}
+                    <a class="collapse-item bg-dark text-white" href="{% url 'login' %}">Login</a>
+                    <a class="collapse-item bg-dark text-white" href="{% url 'logout' %}">Logout</a>
+                    {% comment %} <a class="collapse-item" href="{% url 'register' user.pk %}">Register</a> {% endcomment %}
+                    {% comment %} <a class="collapse-item" href="{% url 'resetpassword' %}">Forgot Password</a> {% endcomment %}
+                    <div class="collapse-divider"></div>
+                    <!-- <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a> -->
+                </div>
+            </div>
+        </li>
+    
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+    
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    
+        <!-- Sidebar Message -->
+    
+        {% comment %} <div class="sidebar-card d-none d-lg-flex "> {% endcomment %}
+            <a class="btn btn-dark btn-sm mb-4" href="{% url 'monthly-budget' %}">Add Budget</a>
+        {% comment %} </div> {% endcomment %}
+    
+        {% comment %} <div class="sidebar-card d-none d-lg-flex"> {% endcomment %}
+            <a class="btn btn-dark btn-sm mb-4" href="{% url 'incomecreate' %}">Add Income</a>
+        {% comment %} </div> {% endcomment %}
+    
+        {% comment %} <div class="sidebar-card d-none d-lg-flex"> {% endcomment %}
+            <a class="btn btn-dark btn-sm mb-4" href="{% url 'expensescreate' %}">Add Expense</a>
+        {% comment %} </div> {% endcomment %}
+
+        {% comment %} <div class="sidebar-card d-none d-lg-flex"> {% endcomment %}
+        {% if request.user.is_superuser %}
+        <a class="btn btn-dark btn-sm mb-4" href="{% url 'total-income-by-category' %}">Total Income By Category</a>   
+            <a class="btn btn-dark btn-sm mb-4" href="{% url 'incomecategory-create' %}">Add Income Category</a>
+        {% comment %} </div> {% endcomment %}
+        {% comment %} <div class="sidebar-card d-none d-lg-flex"> {% endcomment %}
+            <a class="btn btn-dark btn-sm mb-4" href="{% url 'expensecategory-create' %}">Add Expense Category</a>
+
+        {% endif %}     
+        {% comment %} </div> {% endcomment %}
+    </ul>
+
+</body>
+</html>

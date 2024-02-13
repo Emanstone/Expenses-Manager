@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+{% extends 'header.html' %}
+
+{% load static %}
+
+<html lang="en">
+
+    
+    {% block content %} 
+
+        
+<body>
+
+    <!-- <style>
+
+        form{
+            width: 50vw;
+            margin: auto;
+            margin-bottom: 15px;
+            height: 85vh;
+            padding-left: 40px;
+        }
+
+
+        input {
+            margin-bottom: 20px;
+            width: 80%;
+        }
+
+
+        h4 {
+            text-align: center;
+            color: rgb(80, 117, 227);
+            margin-bottom: 40px;
+        }
+
+
+        .btn{
+            text-align: center;
+            margin: auto;
+        }
+
+
+    </style> -->
+
+    <style>
+        form {
+            text-align: center;
+            width: 50vw;
+            margin: auto;
+            font-size: 19px;
+        }
+
+        h4 {
+            text-align: center;
+            color: rgb(80, 117, 227);
+            margin-bottom: 30px;
+        }
+
+        input {
+            margin-bottom: 20px;
+            width: 70%;
+            text-align: center;
+        }
+
+        /* label {
+            margin-left: 10px;
+        } */
+
+
+    </style>
+    
+    <!-- Page content-->
+    
+    <div class="container">
+
+        <h4>Update Your Profile</h4>
+
+        <form method="post" enctype="multipart/form-data" action="{% url 'editprofile' %}">
+            {% csrf_token %}
+            <label for="profileImage">Profile Image:</label> <br>
+            <input type="file" name="postimage" id="profileImage"> <br>
+
+
+            <input type="text" name="username" id="username" placeholder="Username" value="{{ form_data.username }}"><br>
+
+            
+            <input type="text" name="Fullname" id="fullName" placeholder="Full Name" value="{{ form_data.fullname }}"> <br>
+
+
+            <input type="email" name="email" id="email" placeholder="Email" value="{{ form_data.email }}"> <br>
+
+            
+            <input type="text" name="Address" id="address" placeholder="Address" value="{{ form_data.address }}"> <br>
+
+
+            <input type="date" name="dob" id="dob" placeholder="Date of birth" value="{{ form_data.dob }}"> <br>
+
+            
+            <a href="{% url 'editprofile' %}"><input type="submit" value="Save" class="btn btn-primary"> <br>
+
+        </form>
+
+        </div>
+
+    </div>
+
+    
+
+    {% include "footer.html" %}
+
+</body>
+
+    {% endblock content %}
+
+</html>

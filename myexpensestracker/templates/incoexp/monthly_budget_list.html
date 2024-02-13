@@ -1,0 +1,48 @@
+<!-- monthly_budget_list.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+  <style>
+    h3 {
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 20px;
+    }
+
+    .ds {
+      padding: 5px;
+      margin-bottom: 20px;
+      width: 20vw;
+      text-align: center;
+    }
+
+    table {
+      text-align: center;
+      width: 70vw;
+      margin-left: 20px;
+    }
+
+  </style>
+
+  <h3>Monthly Budget List</h3>
+
+  <!-- Display monthly budgets -->
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for budget in monthly_budgets %}
+        <tr>
+          <td>{{ budget.name }}</td>
+          <td>{{ budget.amount }} Naira</td>
+          <td>{{ budget.month|date:"F Y" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

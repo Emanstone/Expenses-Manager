@@ -1,0 +1,68 @@
+<!-- monthly_budget.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+  <h3>Monthly Budgets</h3>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+<style>
+    h3 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    table {
+        margin: auto;
+        margin-bottom: 40px;
+        width: 70vw;
+        text-align: center;
+    }
+
+    form {
+        margin-left: 38%;
+    }
+
+    button {
+        margin-left: 9%;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+</style>
+  <!-- Display monthly budgets -->
+  <table border="3">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Month</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for budget in monthly_budgets %}
+        <tr>
+          <td>{{ budget.name }}</td>
+          <td>₦{{ budget.amount }}</td>
+          <td>{{ budget.month|date:"F Y" }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ <!-- Add new budget form -->
+<h3>Add New Budget</h3>
+<form method="post" action="{% url 'monthly-budget' %}">
+  {% csrf_token %}
+ 
+  <input type="text" name="name" placeholder="Budget Name" required><br>
+  
+  <input type="number" name="amount" placeholder="Budget Amount" step="0.01" required><br>
+  
+  <input type="text" name="month" pattern="\d{4}-\d{2}" title="Enter a valid month in YYYY-MM format" placeholder="YYYY-MM" required><br>
+  <button type="submit">Add Budget</button>
+</form>
+
+{% endblock %}

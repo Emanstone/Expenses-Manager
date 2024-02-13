@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+{% extends 'index.html' %}
+
+{% block content %}
+<body>
+    <style>
+        h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+    
+        .ds {
+            padding: 5px;
+            margin-bottom: 20px;
+            width: 20vw;
+            text-align: center;
+        }
+    
+        form {
+            margin-left: 38%;
+            width: 70vw;
+        }
+    
+        button {
+            margin-left: 11%;
+            margin-top: 10px;
+        }
+    
+        input {
+            margin-bottom: 20px;
+            width: 20vw;
+            padding: 5px;
+        }
+    </style>
+
+    <h3>Add Income</h3>
+    <form method="post" action="{% url 'incomecreate' %}">
+        {% csrf_token %}
+        
+        
+        <input type="text" name="description" placeholder="Description" required><br>
+        
+        
+        <input type="number" name="amount" placeholder="Amount" required><br>
+        
+        
+        <input type="date" name="date" placeholder="Date" required><br>
+        
+        
+        <select name="incometype" aria-placeholder="Income Type" required>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit">Save</button>
+    </form>
+</body>
+{% endblock %}
+</html>

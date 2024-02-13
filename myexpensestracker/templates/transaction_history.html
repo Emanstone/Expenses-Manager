@@ -1,0 +1,44 @@
+<!-- transaction_history.html -->
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <style>
+        h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        table {
+            margin: auto;
+            width: 70vw;
+            font-size: 20px;
+        }
+
+    </style>
+
+  <h3>TRANSACTION HISTORY</h3>
+
+  <table border="1">
+        <thead>
+            <tr>
+                <th>DATE</th>
+                <th>DESCRIPTION</th>
+                <th>AMOUNT</th>
+                <th>TYPE</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in transaction_history %}
+                <tr>
+                    <td>{{ entry.date }}</td>
+                    <td>{{ entry.description }}</td>
+                    <td>₦{{ entry.amount }}</td>
+                    <td>{% if entry.incometype_id %}Income{% else %}Expense{% endif %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+  </table>
+
+{% endblock %}

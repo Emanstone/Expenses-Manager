@@ -1,0 +1,26 @@
+<!-- incomecategory_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+  h3 {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 5%;
+  }
+
+</style>
+  <h3>Income Categories</h3>
+
+  <ul>
+    {% for category in income_categories %}
+      <li style="font-size: 21px; margin-left: 20px;">{{ category.name }}</li>
+    {% endfor %}
+  </ul>
+
+  <div class="text-center mt-5">
+    <a href="{% url 'incomecategory-create' %}" style="font-size: 20px; font-weight: bold;">Create New Category</a>
+  </div>
+
+{% endblock %}

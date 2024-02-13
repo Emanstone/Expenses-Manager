@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+
+{% extends 'index.html' %}
+
+{% comment %} {% include 'sidebar.html' %} {% endcomment %}
+
+{% block content %}
+
+<body>
+    <style>
+
+        h3 {
+        text-align: center;
+        margin-top: 20px;
+        }
+    
+        form {
+        font-size: 25px;
+            
+        }
+    
+    </style>
+
+        
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    <h3 class="h4 text-gray-900 mb-4" style="font-weight: bold; font-size: 30px;">Add Expense</h3>
+    
+    <form class="user" method="post" action="{% url 'expensescreate' %}">
+        {% csrf_token %}
+        
+        <label for="description" name="description" style="width: 50%; margin-left: 20%; font-size: 20px;" >Description:</label>
+        <input type="text" name="description" class="form-control form-control-user" style="width: 50%; margin-bottom: 2%; margin-left: 20%; font-size: 15px;" required>
+    
+        <label for="amount" style="width: 50%; margin-left: 20%;  margin-top: 0; font-size: 20px;">Amount:</label>
+        <input type="number" name="amount" class="form-control form-control-user" style="width: 50%; margin-bottom: 2%; margin-left: 20%; font-size: 15px;" required>
+        
+        <label for="expensetype" style="width: 50%; margin-left: 20%; font-size: 20px;">Expenses Type:</label>
+        <select name="expensetype"  style="width: 50%; margin-left: 20%; font-size: 15px; border-radius: 20px; border: 1px solid rgb(194, 201, 209); padding: 10px;" required>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" class="btn btn-primary btm-xs" value="Add">
+       
+       
+        <!-- <button type="submit" class="btn btn-primary btn-lg mt-5">Add</button> -->
+    </form>
+    <hr>
+    
+    <div class="text-center mb-5" style="font-size: 20px;">
+        <a class="lg fw-bold font-size: 20px" href="{% url 'dashboard' %}">Back to Dashboard!</a>
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+{% endblock %}
+
+</html>

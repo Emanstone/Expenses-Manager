@@ -1,0 +1,35 @@
+<!-- expenses_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+
+  h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  li {
+    font-size: 21px;
+      
+  }
+
+</style>
+
+  <h3>EXPENSES LIST</h3>
+
+  {% if expenses_list %}
+    <ul>
+      {% for expenses in expenses_list %}
+        <li>
+          <strong>{{ expenses.description }}</strong> - &nbsp; {{ expenses.amount }} &nbsp; on &nbsp; {{ expenses.date }}
+          {{ expenses.expensestype.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No expenses record found.</p>
+  {% endif %}
+{% endblock %}

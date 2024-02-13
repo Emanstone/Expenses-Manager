@@ -1,0 +1,38 @@
+<!-- incomecategory_create.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+<style>
+
+  h3 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 5%;
+  }
+
+  form {
+  font-size: 25px;
+  margin: 2px 0 0 30px;
+      
+  }
+
+</style>
+
+  <h3>Create Income Category</h3>
+
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" action="{% url 'incomecategory-create' %}">
+    {% csrf_token %}
+    <label for="name">Category Name:</label>
+    <input type="text" name="name" required>
+    <button type="submit">Create Category</button>
+  </form>
+  <div class="text-center mt-5">
+    <a href="{% url 'incomecategory-list' %}" style="font-size: 20px; font-weight: bold;">Back to Income Categories List</a>
+  </div>
+  
+{% endblock %}

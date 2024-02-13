@@ -1,0 +1,35 @@
+<!-- income_list.html -->
+
+{% extends 'index.html' %}
+
+{% block content %}
+
+<style>
+
+  h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+
+  li {
+    font-size: 23px;    
+  }
+
+</style>
+
+<h3>INCOME LIST</h3>
+
+  {% if income_list %}
+    <ul>
+      {% for income in income_list %}
+        <li>
+          <strong>{{ income.description }}</strong> - &nbsp; {{ income.amount }} &nbsp; on &nbsp; {{ income.date }} &nbsp; : &nbsp;
+          {{ income.incometype.name }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No income records found.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+{% extends 'header.html' %}
+
+{% load static %}
+<html lang="en">
+    {% block content %}    
+    <!-- <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile</title>
+        <script src="https://kit.fontawesome.com/a76070024d.js" crossorigin="anonymous"></script>
+
+    </head>
+    <body> -->
+
+        <style>
+            *{
+                font-family: 'poppings', sans-serif;
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+        
+            .container {
+                width: 500px;
+                margin: 0 auto;
+                border: 2px solid skyblue;
+                border-radius: 10px;
+                height: 95vh;
+                margin-top: 9px;
+                padding: 10px;
+            }
+        
+            .conhead {
+                margin-top: 2px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        
+            .pimg img {
+                border: 1px solid skyblue;
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                margin-bottom: 10px;
+            }
+
+            .mark i{
+                font-weight: bold;
+                color: darkgreen;
+                font-size: 30px;
+                position: absolute;
+                right: 44%;
+                top: 18.5%;
+            }
+
+            .name {
+                text-align: center;
+                margin-bottom: 28px;
+            }
+
+            .nam {
+                font-size: 25px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .name p {
+                font-size: 22px;
+                margin: 10px;
+            }
+
+            .params {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .par {
+                margin: 10px 20px;
+                display: block;
+            }
+
+            .par p {
+                font-weight: 600;
+            }
+
+            .par p1 {
+                margin-left: 12px;
+                font-weight: bolder;
+                font-size: larger;
+                padding-left: 10px;
+            }
+
+            section {
+                margin: 10px 0 30px 0;
+                text-align: center;
+            }
+
+            section p{
+                font-size: 17px;
+            }
+
+            .social {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 25px;
+                margin-top: 15px;
+            }
+
+            .social i {
+                margin: 1px 20px;
+            }
+
+            input {
+                margin-top: 20px;
+                font-weight: bold;
+                border: 3px solid skyblue;
+                padding: 5px 30px;
+                border-radius: 15px;
+                background-color: black;
+                cursor: pointer;
+                color: white;
+            }
+
+            .boton {
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-around;
+            }
+
+
+            .conhead .mark .fa-circle-check[data-profile-complete="True"] {
+                color: green;
+            }
+            
+            
+            .conhead .mark .fa-circle-check[data-profile-complete="False"] {
+                color: red;
+            }
+
+        </style>
+
+        <div class="container">
+            <div class="conhead">
+                <div class="pimg">
+                    <img src="{% if profile_image_url %}{{ profile_info.profile_image_url }}{% else %}{{profile_info.profile_image_url}}{% endif %}" width="100px" height="100px" alt="">
+                    {% comment %} <img src="{{ profile_info.profile_image_url }}" width="100px" height="100px" alt=""> {% endcomment %}
+                </div>
+            </div>
+        
+            <div class="name">
+                <span class="nam">{{profile_info.full_name}}</span> <br>
+                <span class="nam">{{user.username}}</span>
+                
+                <p>{{user.email}}</p>
+                <p>{{profile_info.address}}</p>
+                <p>{{profile_info.dob}}</p>
+            </div>
+            
+            
+            <div class="boton">
+                <a href="{% url 'editprofile' %}"><input type="button" class="btn btn-primary btn-sm" value="Update Profile">
+                <a href="{% url 'dashboard' %}"> <input type="button" class="btn btn-primary btn-sm" value="Dashboard">
+            </div>
+            
+        </div>
+
+        {% comment %} {% include "footer.html" %} {% endcomment %}
+
+    </body>
+   {% endblock content %}
+</html>
